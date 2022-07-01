@@ -1,6 +1,6 @@
 import React from 'react'
 import { FlatList, Text } from 'react-native'
-
+//se despliegan formas diferentes de la lista para los juegos de Guess my Number y Guess your Number
 const List = ({data}) => {
   return (
     <FlatList
@@ -11,7 +11,4 @@ const List = ({data}) => {
     />
   )
 }
-
-
-
 export default List;

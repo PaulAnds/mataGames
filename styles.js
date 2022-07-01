@@ -22,7 +22,10 @@ export default StyleSheet.create({
     box: {
         backgroundColor:'#9c33ff',
         borderRadius: 10,
-        borderColor: 'white',
+        borderColor: 'orange',
+        shadowOpacity: 0.2,
+        justifyContent: "center",
+        alignItems: "center",
         borderWidth: 1,
         height: 200,
         width: '40%',

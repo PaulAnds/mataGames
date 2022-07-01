@@ -8,14 +8,14 @@ import tijeras from '../assets/Tijeras.png';
 import vs from '../assets/vs.jpg';
 let jugadorJugada = 0;
 let jugadorPuntaje = 0;
-let iaJugada = 0;
-let iaPuntaje = 0;
+let PCJugada = 0;
+let PCPuntaje = 0;
 
 const PPoT = () => {
   const [jugada, setJugada] = useState(piedra)
-  const [IA, setIA] = useState(papel)
+  const [PC, setPC] = useState(papel)
   const [marcadorJugador, setMarcadorJugador] = useState(jugadorPuntaje)
-  const [marcadorIA, setMarcadorIA] = useState(iaPuntaje)
+  const [marcadorPC, setMarcadorPC] = useState(PCPuntaje)
   const [displayStart, setDisplayStart] = useState(true);
   const [displayGanaste, setDisplayGanaste] = useState(false);
   const [displayPerdiste, setDisplayPerdiste] = useState(false);
@@ -38,24 +38,23 @@ const PPoT = () => {
             setJugada(jugada);
             break;
     }
-   
-
+    //movimientos de la PC
     const random = Math.floor( Math.random() * (4 - 1)) + 1;
     
     switch( random ) {
         case 1: 
-            iaJugada = 1;
-            setIA(piedra);
+            PCJugada = 1;
+            setPC(piedra);
             break;
         
         case 2: 
-            iaJugada = 2;
-            setIA(papel);
+            PCJugada = 2;
+            setPC(papel);
             break;
         
         case 3: 
-            iaJugada = 3;
-            setIA(tijeras);
+            PCJugada = 3;
+            setPC(tijeras);
             break;
         default: break;
     }
@@ -63,51 +62,51 @@ const PPoT = () => {
     verificarGanador();
 
   }
-
+  //para verificar quien fue el ganador , si el jugador o la PC , o si en caso contrario ocurrio un empate
   function verificarGanador() {
-    if( jugadorJugada !== iaJugada)
+    if( jugadorJugada !== PCJugada)
     {
-        if(jugadorJugada == 1 && iaJugada == 3)
+        if(jugadorJugada == 1 && PCJugada == 3)
         {
             jugadorPuntaje++;
-        } else if( jugadorJugada == 2 && iaJugada == 1)
+        } else if( jugadorJugada == 2 && PCJugada == 1)
         {
             jugadorPuntaje++;
-        } else if( jugadorJugada == 3 && iaJugada == 2)
+        } else if( jugadorJugada == 3 && PCJugada == 2)
         {
             jugadorPuntaje++;
         } else {
-            iaPuntaje++;
+            PCPuntaje++;
         }
     }
 
     actualizarMarcador();
 }
-
+//Actualizaciones del marcador, posibles estados y empates
 function actualizarMarcador() {
     
-    if( jugadorPuntaje <= 2 || iaPuntaje <= 2 ) {
+    if( jugadorPuntaje <= 2 || PCPuntaje <= 2 ) {
         jugadorPuntaje = ( jugadorPuntaje > 2) ? 2 : jugadorPuntaje; 
-        iaPuntaje = ( iaPuntaje > 2) ? 2 : iaPuntaje; 
+        PCPuntaje = ( PCPuntaje > 2) ? 2 : PCPuntaje; 
         setMarcadorJugador(jugadorPuntaje) ;
-        setMarcadorIA(iaPuntaje);
+        setMarcadorPC(PCPuntaje);
     }
-
+    // se determina si gano el Jugador o la PC
     if( jugadorPuntaje == 2) setDisplayGanaste('visible');
-    if( iaPuntaje == 2) setDisplayPerdiste('visible');
+    if( PCPuntaje == 2) setDisplayPerdiste('visible');
 }
-
-const reiniciarMarcador = () => {
+// se reinicPC el marcador una vez termina el juego y se vuelve a ingresar a el 
+const reinicPCrMarcador = () => {
     jugadorPuntaje = 0;
-    iaPuntaje = 0;
+    PCPuntaje = 0;
     actualizarMarcador();
 }
 return (
     <View style={styles.container}>
         
-        <DisplayGameState 
+        <DisplayGameState // se crean diferentes estados para anuncPCr lo que pasa en el juego, InicPCrlo, Ganarlo o Perderlo
             text='Start'
-            func={reiniciarMarcador}
+            func={reinicPCrMarcador}
             state={{
                 display: displayStart,
                 setDisplay: setDisplayStart
@@ -116,7 +115,7 @@ return (
         />
         <DisplayGameState 
             text='Ganaste'
-            func={reiniciarMarcador}
+            func={reinicPCrMarcador}
             state={{
                 display: displayGanaste,
                 setDisplay: setDisplayGanaste
@@ -125,20 +124,20 @@ return (
         />
         <DisplayGameState 
             text='Perdiste'
-            func={reiniciarMarcador}
+            func={reinicPCrMarcador}
             state={{
                 display: displayPerdiste,
                 setDisplay: setDisplayPerdiste
             }}
-            color='#FF1347'
+            color='#9c33ff'
         />
         <Text style={styles.title}>Piedra Papel y Tijera</Text>
         <View style={styles.gameContainer}>
             <View >
-                <Text style={[
+                <Text /*Se despliega todo un Visual para que el jugador sepa de que lado esta jugando , al igual que visualizar su seleccion de partida*/style={[
                     styles.gameText, 
                     (jugada === piedra) && {top: -71}, 
-                    {color: '#0060FF'}
+                    {color: '#9c33ff'}
                     ]}>
                         Player
                 </Text>
@@ -148,36 +147,36 @@ return (
             <View >
             <Text style={[
                     styles.gameText, 
-                    (IA === piedra) && {top: -71}, 
-                    {color: '#FF1347'}
+                    (PC === piedra) && {top: -71}, 
+                    {color: '#9c33ff'}
                     ]}>
-                        AI
+                        PC
                 </Text>
-                <Image style={[styles.gameImage,(IA === piedra) && {height: 90}]} source={ (IA) } />
+                <Image style={[styles.gameImage,(PC === piedra) && {height: 90}]} source={ (PC) } />
             </View>
         </View>
         <View >
-            <Text style={styles.buttonText}>Elige tu jugada</Text>
+            <Text /*Seleccionar una Jugada entre Piedra Papel o Tijeras*/style={styles.buttonText}>Elige tu jugada</Text>
             <View style={styles.buttonContainer}>
-                <TouchableOpacity style={styles.button} onPress={ () => elegirJugada('piedra', piedra) }>
+                <TouchableOpacity  /*jugar con Piedra*/style={styles.button} onPress={ () => elegirJugada('piedra', piedra) }>
                     <Image style={[styles.buttonImage, {height: '65%', top:-5, left: -1}]} source={ (piedra) }/>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={ () => elegirJugada('papel', papel) }>
+                <TouchableOpacity  /*jugar con Papel*/style={styles.button} onPress={ () => elegirJugada('papel', papel) }>
                     <Image style={styles.buttonImage} source={ (papel) } />
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPress={ () => elegirJugada('tijeras', tijeras) }>
+                <TouchableOpacity  /*jugar con Tijeras*/style={styles.button} onPress={ () => elegirJugada('tijeras', tijeras) }>
                     <Image style={styles.buttonImage} source={ (tijeras) }/>
                 </TouchableOpacity>
             </View>
         </View>
         <View style={styles.marcadorContainer}>
-            <View style={styles.marcadorTextContainer}>
-                <Text style={{...styles.marcadorTextPlayer, color: '#0060FF'}}>Player</Text>
+            <View /*el marcador de la Player*/style={styles.marcadorTextContainer}>
+                <Text style={{...styles.marcadorTextPlayer, color: 'orange'}}>Player</Text>
                 <Text style={styles.marcadorTextPoints}>{marcadorJugador}</Text>
             </View>
-            <View style={styles.marcadorTextContainer}>
-                <Text style={{...styles.marcadorTextPlayer, color: '#FF1347'}}>AI</Text>
-                <Text style={styles.marcadorTextPoints}>{marcadorIA}</Text>
+            <View /*el marcador de la PC*/style={styles.marcadorTextContainer}>
+                <Text style={{...styles.marcadorTextPlayer, color: 'orange'}}>PC</Text>
+                <Text style={styles.marcadorTextPoints}>{marcadorPC}</Text>
             </View>
         </View>
     </View>
@@ -185,7 +184,7 @@ return (
 }
 
 export default PPoT
-
+//estilos Piedra papel o Tijera
 const styles  = StyleSheet.create({
     container: {
         flex: 1,
@@ -234,8 +233,9 @@ const styles  = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         borderWidth: 5, 
-        borderColor: '#9c33ff',
-        borderRadius: 130,
+        borderColor: 'orange',
+        borderTopEndRadius: 30,
+        borderBottomLeftRadius:30,
         marginHorizontal: 10,
         overflow: 'hidden',
     },

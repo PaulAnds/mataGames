@@ -19,8 +19,8 @@ const cards = [
       id: 3,
       title: '',
       description: 'Memorama',
-      stock: 5,
-      url: 'https://i.ytimg.com/vi/0Vd6VPzXvSI/maxresdefault.jpg',
+      stock: 1000,
+      url: 'https://cdn.hobbyconsolas.com/sites/navi.axelspringer.es/public/styles/980px/public/media/image/2018/06/analisis-hollow-knight-nintendo-switch.jpg?itok=SnwgyR5h',
       screen: 'MemoryGame'
   }
 

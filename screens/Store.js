@@ -3,7 +3,7 @@ import {StyleSheet, View, Text, Image, ScrollView,TouchableOpacity } from 'react
 import Card from '../Card';
 import cards from '../cards';
 import { useNavigation } from '@react-navigation/native';
-
+// se desplegaran las Cards donde todos los juegos seran visibles , ademas de añadir estilos visuales.
 function Store() {
     
     const navigation = useNavigation();
@@ -44,12 +44,14 @@ function Store() {
         </View>
     );
 }
-
+//estilos de el apartado de juegos
 const styles = StyleSheet.create({
     containerButton: {
         marginRight: 'auto',
         marginLeft: 'auto',
-        flexDirection: 'row',
+        flexDirection: 'column',
+        justifyContent:'center',
+        alignItems: 'center',
         flexWrap: 'wrap',
         justifyContent: 'space-between',
         alignItems: 'center', 

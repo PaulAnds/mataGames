@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { StyleSheet, View, Text, TextInput, Button, TouchableOpacity } from 'react-native';
 import List from '../components/List';
-
-
+//se genera un listado para que se guarden los numeros que vayas intentando para adivinar
 const mapItems = (items) => items.map((value, i) => ({ key: i.toString(), value }));
-
+//se genera un numero random que sera el que tienes que descubrir mediante el juego
 const generateRandomNumber = (max, min = 1) => Math.floor(Math.random() * (max - min) + min);
-
+//se genera un texto que le indica al jugador cuando esta cerca del resultado, ya sea alto o sea bajo
 const calculateText = (number, random) => {
     const soClose = 5;
     const diff = Math.abs(random - number)
@@ -19,16 +18,14 @@ const calculateText = (number, random) => {
         else return "Tu numero es muy alto"
     }
 }
-
-
+//se declaran todos los UseState para que el juego cumpla todas las funciones 
 const GuessNumber = () => {
     const [number, setNumber] = useState('')
     const [message, setMessage] = useState('')
     const [guessList, setGuessList] = useState([])
     const [win, setWin] = useState(false)
     const [count, setCount] = useState(0)
-    const [random, setRandom] = useState(generateRandomNumber(101))
-
+    const [random] = useState(generateRandomNumber(101))
 
     const handleOnChange = newNumber => {
         setNumber(newNumber)

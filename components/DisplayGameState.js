@@ -1,6 +1,6 @@
 import React from 'react'
 import { Text, View, TouchableOpacity, StyleSheet } from 'react-native'
-
+//el display donde el jugador ingresa los numeros en los diferentes juegos
 export const DisplayGameState = ({text, func, state: {display, setDisplay}, color}) => {
     const on = () => (
         <View style={styles.container}>
@@ -22,10 +22,10 @@ export const DisplayGameState = ({text, func, state: {display, setDisplay}, colo
         
     return (display) ? on() : off();
 }
-
+//estilos de el estado de juego para el Piedra papel o Tijera
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: 'rgba(0,0,0,0.8)', 
+        backgroundColor: 'black', 
         position: 'absolute', 
         top: 0, 
         width: '100%', 

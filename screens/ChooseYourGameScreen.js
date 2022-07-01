@@ -1,13 +1,16 @@
 import React from 'react'
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import { useNavigation } from '@react-navigation/native';
-
+//Seleccion de juego , el jugador podra elegir entre Guess my Number y Guess Your Number
 export const ChooseYourGameScreen = () => {
+  //se declara navigation para poder ir a las ventanas de los juegos
     const navigation = useNavigation();
   return (
+    //view con el estilo para que el juego tenga orden visual
     <View style={styles.game}>
         <View >
             <TouchableOpacity
+            //usamos Navigation para ir a Guess my Number y a su vez abajo se despliega el button para ir hacia guessmynumber
                 onPress={() => navigation.push('GuessMyNumber')}
             >
                 <View style={styles.button}>
@@ -15,6 +18,7 @@ export const ChooseYourGameScreen = () => {
                 </View>
             </TouchableOpacity>
             <TouchableOpacity
+            //usamos Navigation para ir a Guess your Number y a su vez abajo se despliega el button para ir hacia guessyournumber
                 onPress={() => navigation.push('GuessYourNumber')}
             >
                 <View style={styles.button}>
@@ -26,7 +30,7 @@ export const ChooseYourGameScreen = () => {
     </View>
   )
 }
-
+//estilos del ChooseYourGameScreen
 const styles = StyleSheet.create({
     game: {
       flex: 1,
@@ -42,7 +46,7 @@ const styles = StyleSheet.create({
     },
     buttonsContainer: {
         backgroundColor: '#9c33ff',
-        borderRadius: 20
+        borderRadius: 20,
     },
     winText: {
       color: 'black', 
@@ -62,8 +66,10 @@ const styles = StyleSheet.create({
       padding: 10,
       margin: 10,
       backgroundColor: '#9c33ff',
-      borderBottomEndRadius:200,
-      borderBottomLeftRadius:200,
+      borderBottomRightRadius:90,
+      borderBottomLeftRadius:90,
+      borderTopRightRadius:45,
+      borderTopLeftRadius:46,
     }
    
   })
