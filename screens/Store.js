@@ -25,7 +25,11 @@ function Store() {
                                     <Text style={styles.text}>{description}</Text>
                                     <TouchableOpacity
                                         style={styles.buttonLocation}
-                                        onPress={() => navigation.push(`${screen}`)}
+                                        onPress={() => {
+                                            navigation.push('loading', {
+                                              screen: screen,
+                                            });
+                                    }}
                                     >
                                         <View style={styles.button}>
                                             <Text style={styles.buttonText}>Jugar</Text>

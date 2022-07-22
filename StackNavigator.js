@@ -1,6 +1,7 @@
 import React from "react";
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Store from "./screens/Store";
+import ProgressScreen from './PaulAnds/ProgressScreen';
 import GuessMyNumber  from "./screens/GuessMyNumber";
 import GuessYourNumber  from "./screens/GuessYourNumber";
 import { ChooseYourGameScreen } from "./screens/ChooseYourGameScreen";
@@ -26,6 +27,7 @@ const MainStackNavigator = () => {
             <Stack.Screen name="GuessNumbers" component={GuessStackNavigator}  options={{ headerShown: false}}/>
             <Stack.Screen name="PPoT" component={PPoT}  />
             <Stack.Screen name="MemoryGame" component={MemoryGame}  />
+            <Stack.Screen name="loading" component={ProgressScreen} />
         </Stack.Navigator>
     )
 }

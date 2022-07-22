@@ -40,5 +40,33 @@ export default StyleSheet.create({
     img: {
         width: 30,
         height: 30
+    },
+    item: {
+        margin: 5,
+        padding: 5,
+        color: "slategray",
+        backgroundColor: "ghostwhite",
+        textAlign: "center",
+    },
+    progress:{
+        width: 170,
+    },
+
+    progressText:{
+        fontSize: 12,
+        textAlign: 'center',
+    },
+    filter: {
+        height: 40,
+        width: 200
+    },
+
+    controls: {
+        flex: 1,
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        padding: 10,
+        backgroundColor: "white",
     }
 })
